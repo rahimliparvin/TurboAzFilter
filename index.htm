@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 
     <style>
@@ -19,607 +20,108 @@
 <body>
 
 
-    <select onchange="getAllModel()" name="" id="marka">
-        <option value="" disabled selected>Marka</option>
-    </select>
+    <section id="filterarea">
+        <div class="container">
+            <div class="markaprice">
+                <div class="marka">
+                    <select onchange="getAllModel()" id="markaSelect" style="font-size: 20px;" name="" id="aalaa">
+                        <option style="font-size: 20px;" value="" selected disabled>Marka</option>
+                    </select>
+                </div>
+                <div class="price">
+                    <label id="minPriceLabel" for="minPriceInput">Qiymet , min.</label>
+                    <input name="minPriceInput" id="minPriceInput" style="border-right: 1px solid #EBEDF3;" type="number" />
+                    <label id="maxPriceLabel" for="maxPriceInput">Max.</label>
+                    <input  id="maxPriceInput" type="number" />
+                </div>
+            </div>
 
-    <select name="" id="model"> </select>
+            <div class="modelKredBartValut">
+                <div class="model">
+                    <select style="font-size: 20px;" id="aalaa">
+                        <option value="" selected disabled>Model</option>
+                    </select>
+                </div>
+                <div class="kredBartValut">
+                    <select name="" id="valyuta">
+                        <option value="AZN" selected> AZN</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR" >EUR</option>
+                    </select>
+                    <label id="kredLabel" for="kredRadio">
+                        Kredit
+                        <input style="display: none;" id="kredRadio" type="checkbox">
+                    </label>
 
-    <div class="buttons">
-        Butun <input id="allCarsRadio" name="novel" class="activeBtn" type="radio" />
-        Yeni <input id="novelCarsRadio" name="novel" type="radio" />
-        Surulmus<input id="exCarsRadio" name="novel" type="radio" />
-    </div>
+                    <label id="bartLabel" for="bartRadio">
+                        Barter
+                        <input style="display: none;" id="bartRadio" type="checkbox">
+                    </label>
 
-    <select name="seherler" id="city">
-        <option value="" disabled selected>City</option>
-    </select>
+                </div>
+            </div>
 
-    <input id="minPrice" type="number" placeholder="min qiymet">
-    <input id="maxPrice" type="number" placeholder="max qiymet">
+            <div class="novelBanType">
+                <div class="novelOldAll">
+                    <label onclick="changeNovel(`AllNovelLabel`)" class="activeNovel" id="AllNovelLabel">
+                        Hamısı
+                    </label>
+                    <input id="AllNovelInput" name="A" checked type="radio" style="display: none;" />
 
-    <select name="valy" id="valyuta">
-    </select>
+                    <label onclick="changeNovel(`NewNovelLabel`)" id="NewNovelLabel">
+                        Yeni
+                    </label>
+                    <input id="NewNovelInput" name="A" type="radio" style="display: none;" />
 
-    Kredit<input type="checkbox" id="cred" />
-    Barter<input type="checkbox" id="rent" />
+                    <label onclick="changeNovel(`OldNovelLabel`)" id="OldNovelLabel">
+                        Sürülmüş
+                    </label>
+                    <input id="OldNovelInput" name="A" type="radio" style="display: none;" />
 
-    <select name="banNovu" id="banType">
-        <option value="" selected disabled>Ban</option>
-    </select>
+                </div>
+                <div class="banTypes">
+                    <select style="font-size: 18px;" name="" id="banTypes">
+                        <option style="font-size: 18px;" value="" selected disabled>Ban növü</option>
+                    </select>
+                </div>
+            </div>
 
-    <select name="" id="minYear">
-        <option value="" selected disabled>il ,min</option>
-    </select>
-    <select name="" id="maxYear">
-        <option value="" selected disabled>il ,max</option>
-    </select>
+            <div class="cityYear">
+                <div class="cityDiv">
+                    <select name="" id="citiesSelect">
+                        <option value="" selected disabled>Şəhər</option>
+                    </select>
+                </div>
+                <div class="minMaxYear">
+                    <div class="minDivYear">
+                        <select name="" id="minYearSelect">
+                            <option value="">min year</option>
+                        </select>
+                    </div>
+                    <div class="maxDivYear">
+                        <select name="" id="maxYearSelect">
+                            <option value="">max year</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-    <button onclick="getElan()">Elani goster</button>
+            <div class="findReset">
+                <button id="resetInputsButton" onclick="resetInputs()">Sıfırla</button>
+                <button onclick="getElan()" id="findCars">Elanları göstər</button>
+            </div>
+        </div>
+    </section>
 
+    <section id="filteredCars">
+       <div class="container">
+        <div id="cards">
+        </div>
+       </div>
+    </section>
+
+    <script src="https://kit.fontawesome.com/e29b1b43d1.js" crossorigin="anonymous"></script>
     <script src="./script.js"></script>
-
-    <!-- <script>
-
-        const marka = document.getElementById("marka");
-        const model = document.getElementById("model");
-        const buttons = document.querySelectorAll(".buttons button");
-        const city = document.getElementById("city");
-        console.log(city);
-        const valut = document.getElementById("valyuta");
-        console.log(valut);
-        const cred = document.getElementById("cred");
-        const rent = document.getElementById("rent");
-        const banType = document.getElementById("banType");
-        const minPrice = document.getElementById("minPrice");
-        const maxPrice = document.getElementById("maxPrice");
-        const minYear = document.getElementById("minYear");
-        const maxYear = document.getElementById("maxYear");
-        const allCarsRadioValue = document.getElementById("allCarsRadio");
-        const novelCarsRadioValue = document.getElementById("novelCarsRadio");
-        const exCarsRadioValue = document.getElementById("exCarsRadio");
-
-
-
-
-
-        let saleCars =
-            [
-                {
-                    Marka: "Bmw",
-                    Model: "M3",
-                    Novel: true,
-                    City: "Baki",
-                    Credit: true,
-                    Barter: false,
-                    Ban: "Pickup",
-                    Year: 2023,
-                    Valut: "AZN",
-                    Price: 20500
-                },
-                {
-                    Marka: "Bmw",
-                    Model: "M3",
-                    Novel: false,
-                    City: "Baki",
-                    Credit: false,
-                    Barter: false,
-                    Ban: "Pickup",
-                    Year: 2013,
-                    Valut: "USD",
-                    Price: 10000
-
-                },
-                {
-                    Marka: "Mersedes",
-                    Model: "GLK",
-                    Novel: false,
-                    City: "Sumqayit",
-                    Credit: false,
-                    Barter: true,
-                    Ban: "Jeep",
-                    Year: 2019,
-                    Valut: "EUR",
-                    Price: 30500
-
-                },
-                {
-                    Marka: "Mersedes",
-                    Model: "GLK",
-                    Novel: false,
-                    City: "Gence",
-                    Credit: false,
-                    Barter: true,
-                    Ban: "Jeep",
-                    Year: 2019,
-                    Valut: "EUR",
-                    Price: 9600
-                },
-                {
-                    Marka: "Mersedes",
-                    Model: "GLK",
-                    Novel: false,
-                    City: "Sumqayit",
-                    Credit: false,
-                    Barter: true,
-                    Ban: "Jeep",
-                    Year: 2019,
-                    Valut: "EUR",
-                    Price: 45500
-                },
-                {
-                    Marka: "Audi",
-                    Model: "Q7",
-                    Novel: true,
-                    City: "Gence",
-                    Credit: true,
-                    Barter: false,
-                    Ban: "Sedan",
-                    Year: 2019,
-                    Valut: "EUR",
-                    Price: 100000
-                },
-
-                {
-                    Marka: "Audi",
-                    Model: "Q7",
-                    Novel: true,
-                    City: "Gence",
-                    Credit: true,
-                    Barter: false,
-                    Ban: "Sedan",
-                    Year: 2019,
-                    Valut: "EUR",
-                    Price: 100000
-                },
-                
-                {
-                    Marka: "Fiat",
-                    Model: "Doblo",
-                    Novel: false,
-                    City: "Zaqatala",
-                    Credit: false,
-                    Barter: false,
-                    Ban: "Van",
-                    Year: 2016,
-                    Valut: "AZN",
-                    Price: 120000
-                }
-
-            ]
-        let cities = ["Agcabedi", "Baki", "Gence", "Salyan", "Sumqayit", "Zaqatala", "Xizi"];
-        let cars = [
-            { Marka: "BMW", Model: ["M3", "M4", "M5"] },
-            { Marka: "Mersedes", Model: ["GLK", "BRABUS", "AMG"] },
-            { Marka: "Audi", Model: ["A8", "Q7", "RS7"] },
-            { Marka: "Fiat", Model: ["Doblo", "AF", "AF1"] },
-            { Marka: "Ferrari", Model: ["fER1", "FER2", "FER3"] }
-        ]
-        let bans = ["Van", "Pickup", "Jeep", "Sedan"];
-        let valutes = ["AZN", "USD", "EUR"];
-
-
-        function getElan() {
-
-            console.log(city.value);
-            console.log(valut.value);
-
-            saleCars.forEach(saleCar => {
-
-                if (saleCar.Marka.toUpperCase() == marka.value.toUpperCase()) {
-                    if (saleCar.Model.toUpperCase() == model.value.toUpperCase()) {
-                        if (novelCarsRadioValue.checked && saleCar.Novel == true) {
-                            if (city.value.toUpperCase() == saleCar.City.toUpperCase()) {
-                                if (cred.checked && saleCar.Credit == true) {
-                                    if (rent.checked && saleCar.Barter == true) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else if (rent.checked == false && saleCar.Barter == false) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (cred.checked == false && saleCar.Credit == false) {
-                                    if (rent.checked && saleCar.Barter == true) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else if (rent.checked == false && saleCar.Barter == false) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        else if (exCarsRadioValue.checked && saleCar.Novel == false) {
-                            if (city.value.toUpperCase() == saleCar.City.toUpperCase()) {
-                                if (cred.checked && saleCar.Credit == true) {
-                                    if (rent.checked && saleCar.Barter == true) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else if (rent.checked == false && saleCar.Barter == false) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (cred.checked == false && saleCar.Credit == false) {
-                                    if (rent.checked && saleCar.Barter == true) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else if (rent.checked == false && saleCar.Barter == false) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        else if (allCarsRadioValue.checked) {
-                            if (city.value.toUpperCase() == saleCar.City.toUpperCase()) {
-                                if (cred.checked && saleCar.Credit == true) {
-                                    if (rent.checked && saleCar.Barter == true) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else if (rent.checked == false && saleCar.Barter == false) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (cred.checked == false && saleCar.Credit == false) {
-                                    if (rent.checked && saleCar.Barter == true) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else if (rent.checked == false && saleCar.Barter == false) {
-                                        if (banType.value == saleCar.Ban) {
-                                            if (minYear.value <= saleCar.Year && maxYear.value >= saleCar.Year) {
-                                                if (valut.value.toUpperCase() == saleCar.Valut.toUpperCase()) {
-                                                    if (+minPrice.value == 0 && +maxPrice.value == 0) {
-                                                        console.log(saleCar);
-                                                    }
-                                                    else if (+minPrice.value > 0 && +maxPrice.value > 0) {
-                                                        if (+minPrice.value <= saleCar.Price && +maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else if (+maxPrice.value > 0) {
-                                                        if (+maxPrice.value >= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                    else {
-                                                        if (+minPrice.value <= saleCar.Price) {
-                                                            console.log(saleCar);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-
-        getValuate();
-        function getValuate() {
-            for (let i = 0; i < valutes.length; i++) {
-                valut.innerHTML += `<option>${valutes[i]}</option>`
-            }
-        }
-
-        oldYear();
-        function oldYear() {
-            let year = new Date().getFullYear()
-            for (let index = year; index >= year - 100; index--) {
-                minYear.innerHTML += `<option>${index}</option>`
-                maxYear.innerHTML += `<option>${index}</option>`
-            }
-        }
-
-        changeBan();
-        function changeBan() {
-            for (let i = 0; i < bans.length; i++) {
-                banType.innerHTML += `<option>${bans[i]}</option>`
-            }
-        }
-
-        changeCity();
-        function changeCity() {
-            for (let i = 0; i < cities.length; i++) {
-                city.innerHTML += `<option>${cities[i]}</option>`
-            }
-        }
-
-        buttons.forEach(button => {
-            button.addEventListener("click", function () {
-                for (const btn of buttons) {
-                    btn.classList.remove("activeBtn");
-                }
-                this.classList.add("activeBtn")
-            })
-        });
-
-        getMarka();
-        function getMarka() {
-            for (let i = 0; i < cars.length; i++) {
-                marka.innerHTML += `<option value="${cars[i].Marka}">${cars[i].Marka}</option>`;
-            }
-        }
-
-        function getAllModel() {
-            model.innerHTML = "";
-            cars.forEach(car => {
-                if (car.Marka == marka.value) {
-                    for (let i = 0; i < car.Model.length; i++) {
-                        model.innerHTML += `<option value="${car.Model[i]}">${car.Model[i]}</option>`;
-                    }
-                }
-            });
-        }
-
-
-
-            // for (const car of saleCars) {
-            //     console.log(`Marka ${car.Marka} / Model ${car.Model} / Novel ${car.Novel} / City ${car.City} / Credit ${car.Credit} / Barter ${car.Barter} / Ban ${car.Ban} / Year ${car.Year}`);
-            // }
-
-
-
-
-
-
-    </script> -->
-
 </body>
 
 </html>

@@ -1,0 +1,531 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1010px;
+    margin: auto;
+}
+
+#filterarea {
+    background-color: #EBEDF3;
+    padding: 20px 0;
+}
+
+#filterarea .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+}
+
+.markaprice,
+.modelKredBartValut,
+.novelBanType,
+.cityYear {
+    width: 235px;
+    border-radius: 5px;
+}
+
+.marka {
+    position: relative;
+    width: 100%;
+    height: 48px;
+}
+
+
+.marka select {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    outline: none;
+    border: 1px solid #EBEDF3;
+    border-radius: 5px;
+    background-color: white;
+    color: gray;
+}
+
+
+#aalaa option {
+    width: 100%;
+    font-size: 20px;
+}
+
+.price {
+    width: 100%;
+    display: flex;
+    border: 1px solid #EBEDF3;
+    border-radius: 5px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.price input {
+    display: inline-block;
+    width: 50%;
+    height: 48px;
+    color: black;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.price input:nth-child(2) {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.price input:nth-child(4) {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#minPriceLabel {
+    position: absolute;
+    z-index: 2;
+    color: gray;
+    top: 50%;
+    left: 0;
+    font-size: 20px;
+    transform: translate(0, -50%);
+    transition: .3s;
+}
+
+#maxPriceLabel {
+    position: absolute;
+    z-index: 2;
+    color: gray;
+    top: 50%;
+    right: 25%;
+    font-size: 20px;
+    transform: translate(0, -50%);
+    transition: .3s;
+}
+
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.model {
+    width: 100%;
+    position: relative;
+    height: 48px;
+}
+
+.model select {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    transform: translate(0, -50%);
+    outline: none;
+    border: 1px solid #EBEDF3;
+    border-radius: 5px;
+    background-color: white;
+    color: gray;
+}
+
+
+.kredBartValut {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.kredBartValut .kred {
+    width: 33%;
+    height: 100%;
+}
+
+
+.kredBartValut select {
+    width: 33%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    font-weight: 300;
+}
+
+.kredBartValut select option {
+    user-select: none;
+}
+
+.kredBartValut #kredLabel {
+    width: 33%;
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background-color: white;
+}
+
+.kredBartValut #bartLabel {
+    width: 33%;
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background-color: white;
+}
+
+.activeValute {
+    color: #ca1016 !important;
+    background-color: rgb(219 166 166 / 68%) !important;
+    border: 1px solid #ca1016 !important;
+}
+
+.activeNovel {
+    color: white !important;
+    background-color: #ca1016 !important;
+    border: 1px solid #ca1016 !important;
+}
+
+.novelOldAll {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.novelOldAll #AllNovelLabel {
+    width: 33.6%;
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background-color: white;
+    color: gray;
+    border: 1px solid #EBEDF3;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+}
+
+.novelOldAll #NewNovelLabel {
+    width: 33.6%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background-color: white;
+    color: gray;
+    border: 1px solid #EBEDF3;
+}
+
+.novelOldAll #OldNovelLabel {
+    width: 33.6%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background-color: white;
+    color: gray;
+    border: 1px solid #EBEDF3;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.novelBanType .banTypes {
+    width: 100%;
+    height: 48px;
+    position: relative;
+    margin-top: 12px;
+}
+
+.novelBanType .banTypes select {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    outline: none;
+    border: 1px solid #EBEDF3;
+    border-radius: 5px;
+    background-color: white;
+    color: gray;
+}
+
+::selection {
+    user-select: none;
+}
+
+
+.cityYear .cityDiv {
+    width: 100%;
+    height: 48px;
+    position: relative;
+}
+
+.cityDiv #citiesSelect {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    outline: none;
+    border: 1px solid #EBEDF3;
+    border-radius: 5px;
+    background-color: white;
+    color: gray;
+    font-size: 20px;
+}
+
+.minMaxYear {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.minMaxYear .minDivYear {
+    width: 50%;
+    height: 48px;
+}
+
+.minMaxYear .maxDivYear {
+    width: 50%;
+    height: 48px;
+}
+
+.minMaxYear select {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(192, 191, 191);
+    border-radius: 5px;
+    outline: none;
+}
+
+.minDivYear #minYearSelect {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    color: gray;
+    font-size: 15px;
+
+}
+
+.maxDivYear #maxYearSelect {
+    border-left: none;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    color: gray;
+    font-size: 15px;
+}
+
+
+.findReset {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+
+.findReset button {
+    color: #fff;
+    background-color: #ca1016;
+    border-color: #ca1016;
+    padding: 15px 40px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
+}
+
+.findReset button:hover {
+    background-color: #aa0c12;
+}
+
+#filteredCars{
+    background-color: #f5f5f5;
+    padding-top: 50px;
+}
+
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 18px;
+    padding: 20px;
+}
+
+.card {
+    position: relative;
+    width: 229px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
+}
+
+.card .fa-arrows-rotate {
+    position: absolute;
+    font-size: 14px;
+    top: 10px;
+    left: 10px;
+    padding: 5px;
+    background-color: #76c81c;
+    border-radius: 50%;
+    color: white;
+}
+
+
+.card .fa-arrows-rotate::after{
+    position: absolute;
+    width: 113px;
+    display: none;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: .5px;
+    content: "Barter mümkündür!";
+    padding: 5px;
+    background-color: #76c81c;
+    color: white;
+    font-family: auto;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.card .fa-arrows-rotate:hover::after{
+    display: block;
+}
+
+
+
+.card .fa-percent{
+    position: absolute;
+    font-size: 14px;
+    top: 10px;
+    left: 40px;
+    padding: 5px 7px;
+    background-color: #f5a623;
+    border-radius: 50%;
+    color: white;
+}
+
+
+.card .fa-percent::after{
+    position: absolute;
+    width: 71px;
+    display: none;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: .5px;
+    content: "Kreditdədir!";
+    padding: 5px;
+    background-color: #f5a623;
+    color: white;
+    font-family: auto;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.card .fa-percent:hover::after{
+    display: block;
+}
+
+
+.cardInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.card img {
+    width: 100%;
+}
+
+
+@media only screen and (max-width:1030px) {
+
+
+
+    #filterarea {
+        padding: 0;
+    }
+
+    .findReset {
+        justify-content: center;
+        gap: 35px;
+    }
+
+    #findCars {
+        width: 100%;
+    }
+
+    #resetInputsButton {
+        order: 1;
+        width: 100%;
+    }
+
+    #filterarea .container {
+        gap: 2%;
+    }
+
+    .markaprice,
+    .modelKredBartValut,
+    .novelBanType,
+    .cityYear {
+        width: 49%;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width:576px) {
+
+
+    #filterarea {
+        padding: 0;
+    }
+
+    .findReset {
+        justify-content: center;
+        gap: 35px;
+    }
+
+    #findCars {
+        width: 100%;
+    }
+
+    #resetInputsButton {
+        order: 1;
+        width: 100%;
+    }
+
+    .markaprice,
+    .modelKredBartValut,
+    .novelBanType,
+    .cityYear {
+        width: 100%;
+    }
+}
